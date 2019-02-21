@@ -8,9 +8,7 @@ using System.ServiceModel.Web;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Newtonsoft.Json.Linq;
-using Wexflow.Core.ExecutionGraph.Flowchart;
 using LaunchType = Wexflow.Core.Service.Contracts.LaunchType;
-using System.Xml;
 
 namespace Wexflow.Clients.WindowsService
 {
@@ -34,6 +32,14 @@ namespace Wexflow.Clients.WindowsService
         public void StartWorkflow(string id)
         {
             WexflowWindowsService.WexflowEngine.StartWorkflow(int.Parse(id));
+        }
+
+        [WebInvoke(Method = "POST",
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "startWithData/?id={id}&hashValue={hashValue}")]
+        public void StartWorkflowWithData(string id,string hashValue)
+        {
+            WexflowWindowsService.WexflowEngine.StartWorkflow(int.Parse(id),hashValue);
         }
 
         [WebInvoke(Method = "POST",
@@ -214,6 +220,7 @@ namespace Wexflow.Clients.WindowsService
 
                 JObject o = JObject.Parse(json);
                 var wi = o.SelectToken("WorkflowInfo");
+                bool createExecutionGraphXML = false; // Tim
 
                 var isNew = (bool) wi.SelectToken("IsNew");
                 if (isNew)
@@ -284,8 +291,27 @@ namespace Wexflow.Clients.WindowsService
                             xtask.Add(xsetting);
                         }
 
+                        if (createExecutionGraphXML == false)
+                        {
+                            createExecutionGraphXML = (taskName == "IfCheck" || taskName == "SwitchCheck" || taskName == "WhileCheck") ? true : false;
+                        } // Tim
+
                         xtasks.Add(xtask);
                     }
+
+                    // Create the ExecutionGraphXML
+                    var xExecutionGraph = new XElement(xn + "ExecutionGraph");                    
+                    if (createExecutionGraphXML == true)
+                    {
+                        var taskList = xtasks.Elements().ToList();
+                        var rootElements = taskList.Where(
+                            e => string.IsNullOrEmpty(
+                                new Core.WexflowGraphXML(taskList).GetSettingValue(e.Elements().ToList(), "parent")
+                            ) == false
+                        ).ToList();
+
+                        xExecutionGraph = new Core.WexflowGraphXML(taskList).GetGraphXElements(rootElements, xExecutionGraph, true);
+                    } // Tim
 
                     // root
                     var xwf = new XElement(xn + "Workflow"
@@ -304,6 +330,7 @@ namespace Wexflow.Clients.WindowsService
                                     , new XAttribute("value", workflowPeriod.ToString(@"dd\.hh\:mm\:ss")))
                                         )
                             , xtasks
+                            , xExecutionGraph // Tim
                         );
 
                     xdoc.Add(xwf);
@@ -407,8 +434,31 @@ namespace Wexflow.Clients.WindowsService
                                 xtask.Add(xsetting);
                             }
 
+                            if (createExecutionGraphXML == false)
+                            {
+                                createExecutionGraphXML = (taskName == "IfCheck" || taskName == "SwitchCheck" || taskName == "WhileCheck") ? true : false;
+                            } // Tim
+
                             xtasks.Add(xtask);
                         }
+
+                        // Create the ExecutionGraphXML                        
+                        if (xdoc.Root.Element(wf.XNamespaceWf + "ExecutionGraph") != null)
+                            xdoc.Root.Element(wf.XNamespaceWf + "ExecutionGraph").Remove();
+
+                        var xExecutionGraph = new XElement(wf.XNamespaceWf + "ExecutionGraph");
+                        if (createExecutionGraphXML == true)
+                        {
+                            var taskList = xtasks.Elements().ToList();
+                            var rootElements = taskList.Where(
+                                e => string.IsNullOrEmpty(
+                                    new Core.WexflowGraphXML(taskList).GetSettingValue(e.Elements().ToList(), "parent")
+                                ) == false
+                            ).ToList();
+
+                            xExecutionGraph = new Core.WexflowGraphXML(taskList).GetGraphXElements(rootElements, xExecutionGraph, true);
+                            xdoc.Root.Add(xExecutionGraph);
+                        } // Tim
 
                         xdoc.Save(wf.WorkflowFilePath);
                     }
@@ -492,41 +542,15 @@ namespace Wexflow.Clients.WindowsService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "graph/{id}")]
-        public Node[] GetExecutionGraph(string id)
+        public Core.ExecutionGraph.GraphNode[] GetExecutionGraph(string id)
         {
             var wf = WexflowWindowsService.WexflowEngine.GetWorkflow(int.Parse(id));
             if (wf != null)
             {
-                IList<Node> nodes = new List<Node>();
-                
-                foreach (var node in wf.ExecutionGraph.Nodes)
-                {
-                    var task = wf.Taks.FirstOrDefault(t => t.Id == node.Id);
-                    string nodeName = "Task " + node.Id + (task != null ? ": " + task.Description : "");
-
-                    if (node is If)
-                    {
-                        nodeName = "If...EndIf";
-                    }
-                    else if (node is While)
-                    {
-                        nodeName = "While...EndWhile";
-                    }
-                    else if (node is Switch)
-                    {
-                        nodeName = "Switch...EndSwitch";
-                    }
-
-                    string nodeId = "n" + node.Id;
-                    string parentId = "n" + node.ParentId;
-
-                    nodes.Add(new Node(nodeId, nodeName, parentId));
-                }
-
-                return nodes.ToArray();
+                return new Core.WexflowGraph(wf).GetGraphNodes();
             }
 
             return null;
-        }
+        }        
     }
 }

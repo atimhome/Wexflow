@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -520,6 +521,16 @@ namespace Wexflow.Core
 
             throw new Exception("Workflow setting " + name + " not found.");
         }
+
+        /// <summary>
+        /// Starts this workflow.
+        /// </summary>
+        public void Start(string hashValue)
+        {
+            this.Hashtable = JsonConvert.DeserializeObject<Hashtable>(hashValue);            
+            this.Start();
+        }
+
 
         /// <summary>
         /// Starts this workflow.

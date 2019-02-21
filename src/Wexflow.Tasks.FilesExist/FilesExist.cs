@@ -76,7 +76,7 @@ namespace Wexflow.Tasks.FilesExist
             }
 
             Info("Task finished.");
-            return new TaskStatus(status, false);
+            return new TaskStatus(status, success);
         }
     }
 }

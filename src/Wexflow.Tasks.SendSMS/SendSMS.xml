@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tasks>
+  <!--
+	SendSMS can send SMS by Twilio.
+  -->
+  <Task id="$int" name="SendSMS" description="$string" enabled="true|false">
+    <!-- 
+      The XML files loaded by the task having as id the $taskId will be
+      used to send SMS.
+    -->    
+    <!-- Your Account SID from twilio.com/console ex:ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX. -->
+    <Setting name="accountSid" value="$string" />
+    <!-- Your Auth Token from twilio.com/console. -->
+    <Setting name="authToken" value="$string" />
+    <!-- Twilio's phonenumber ex:+15017250604. -->
+    <Setting name="from" value="$string" />
+    <!-- SMS body ex:Hello from C#.-->
+    <Setting name="body" value="$string" />
+	<!-- SMS receiver have to add to url, ex:http://localhost:8000/wexflow/startWithData/?id=99&hashValue={"to": "%2B886981124310"}.-->
+    <Setting name="to" value="$string" />
+  </Task>
+</Tasks>

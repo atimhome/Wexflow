@@ -16,6 +16,21 @@
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>發行\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -84,7 +99,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Core\Wexflow.Core.csproj">
       <Project>{46257949-80B5-48F2-9B83-29354C339869}</Project>
-      <Name>Wexflow.Core %28Wexflow.Core\Wexflow.Core%29</Name>
+      <Name>Wexflow.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.CsvToXml\Wexflow.Tasks.CsvToXml.csproj">
       <Project>{40664177-8903-4c7b-ad0e-7b98bed6a3c8}</Project>
@@ -146,6 +161,10 @@
       <Project>{c249b3ea-e3a3-4975-b3ba-51bc9d7e5816}</Project>
       <Name>Wexflow.Tasks.Http</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.IfCheck\Wexflow.Tasks.IfCheck.csproj">
+      <Project>{8794be1a-ab67-4a0f-b0f0-d86af4ca6bf3}</Project>
+      <Name>Wexflow.Tasks.IfCheck</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.ImagesTransformer\Wexflow.Tasks.ImagesTransformer.csproj">
       <Project>{d2ba9820-d5c7-4053-8e36-ac94c162c9b0}</Project>
       <Name>Wexflow.Tasks.ImagesTransformer</Name>
@@ -173,6 +192,10 @@
     <ProjectReference Include="..\Wexflow.Tasks.MediaInfo\Wexflow.Tasks.MediaInfo.csproj">
       <Project>{31f725ce-5047-4afd-a21e-58828f7ccb08}</Project>
       <Name>Wexflow.Tasks.MediaInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.MessageCorrect\Wexflow.Tasks.MessageCorrect.csproj">
+      <Project>{2e2e7f69-6f4a-4cf5-bde5-322757276797}</Project>
+      <Name>Wexflow.Tasks.MessageCorrect</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Mkdir\Wexflow.Tasks.Mkdir.csproj">
       <Project>{ff5a22b8-b594-4d2b-a3fe-10bd28038005}</Project>
@@ -202,6 +225,10 @@
       <Project>{f3f7276b-ac03-4db2-a1d8-28738434c72e}</Project>
       <Name>Wexflow.Tasks.Rmdir</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.SendSMS\Wexflow.Tasks.SendSMS.csproj">
+      <Project>{b40f802a-37d9-439f-b217-df03ca73593a}</Project>
+      <Name>Wexflow.Tasks.SendSMS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Sha1\Wexflow.Tasks.Sha1.csproj">
       <Project>{58e208f5-9943-48e5-86df-56f1ccfa8e75}</Project>
       <Name>Wexflow.Tasks.Sha1</Name>
@@ -225,6 +252,10 @@
     <ProjectReference Include="..\Wexflow.Tasks.Sql\Wexflow.Tasks.Sql.csproj">
       <Project>{ef416670-6443-4c98-8d26-27d3741b8fb0}</Project>
       <Name>Wexflow.Tasks.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.SwitchCheck\Wexflow.Tasks.SwitchCheck.csproj">
+      <Project>{9df71d1e-6607-4621-87fb-453e45e5e1f0}</Project>
+      <Name>Wexflow.Tasks.SwitchCheck</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Sync\Wexflow.Tasks.Sync.csproj">
       <Project>{5784b8a2-51c4-4b1a-8ec2-322a4ab168c1}</Project>
@@ -270,6 +301,10 @@
       <Project>{81c8da3e-32cb-4084-84da-c531522318c3}</Project>
       <Name>Wexflow.Tasks.Wait</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.WhileCheck\Wexflow.Tasks.WhileCheck.csproj">
+      <Project>{62c7825f-0102-4c5b-a366-78f08a8e2121}</Project>
+      <Name>Wexflow.Tasks.WhileCheck</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Wmi\Wexflow.Tasks.Wmi.csproj">
       <Project>{0bef411f-039f-4c4f-a0ff-8defcfe1c019}</Project>
       <Name>Wexflow.Tasks.Wmi</Name>
@@ -298,6 +333,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Wexflow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

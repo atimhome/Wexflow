@@ -66,8 +66,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +85,7 @@
     <Compile Include="ExecutionGraph\Flowchart\Switch.cs" />
     <Compile Include="ExecutionGraph\Flowchart\While.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="ExecutionGraph\GraphNode.cs" />
     <Compile Include="FileInf.cs" />
     <Compile Include="ExecutionGraph\Graph.cs" />
     <Compile Include="ExecutionGraph\GraphEvent.cs" />
@@ -94,6 +99,8 @@
     <Compile Include="TaskStatus.cs" />
     <Compile Include="WexflowEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WexflowGraph.cs" />
+    <Compile Include="WexflowGraphXML.cs" />
     <Compile Include="WexflowTimer.cs" />
     <Compile Include="Workflow.cs" />
   </ItemGroup>
@@ -106,6 +113,12 @@
     <None Include="Workflow.xsd">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wexflow.Core.Service.Contracts\Wexflow.Core.Service.Contracts.csproj">
+      <Project>{7DEBD0D9-EA9B-445C-9B6D-F426908CE736}</Project>
+      <Name>Wexflow.Core.Service.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

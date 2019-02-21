@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.ServiceModel;
+using Wexflow.Core.ExecutionGraph;
 using Wexflow.Core.Service.Contracts;
 
 namespace Wexflow.Clients.WindowsService
@@ -12,6 +13,9 @@ namespace Wexflow.Clients.WindowsService
 
         [OperationContract]
         void StartWorkflow(string id);
+
+        [OperationContract]
+        void StartWorkflowWithData(string id, string hashValue);
 
         [OperationContract]
         void StopWorkflow(string id);
@@ -50,7 +54,7 @@ namespace Wexflow.Clients.WindowsService
         string[] GetSettings(string taskName);
 
         [OperationContract]
-        Node[] GetExecutionGraph(string id);
+        GraphNode[] GetExecutionGraph(string id);
 
         [OperationContract]
         string GetTaskXml(Stream streamdata);
