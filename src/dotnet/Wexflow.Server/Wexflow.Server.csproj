@@ -268,6 +268,10 @@
       <Project>{c249b3ea-e3a3-4975-b3ba-51bc9d7e5816}</Project>
       <Name>Wexflow.Tasks.Http</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.IfCheck\Wexflow.Tasks.IfCheck.csproj">
+      <Project>{8794be1a-ab67-4a0f-b0f0-d86af4ca6bf3}</Project>
+      <Name>Wexflow.Tasks.IfCheck</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.ImagesConcat\Wexflow.Tasks.ImagesConcat.csproj">
       <Project>{7e3fe55c-4bbe-4d7f-b705-34d247815bb1}</Project>
       <Name>Wexflow.Tasks.ImagesConcat</Name>
@@ -323,6 +327,10 @@
     <ProjectReference Include="..\Wexflow.Tasks.MediaInfo\Wexflow.Tasks.MediaInfo.csproj">
       <Project>{31f725ce-5047-4afd-a21e-58828f7ccb08}</Project>
       <Name>Wexflow.Tasks.MediaInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.MessageCorrect\Wexflow.Tasks.MessageCorrect.csproj">
+      <Project>{2e2e7f69-6f4a-4cf5-bde5-322757276797}</Project>
+      <Name>Wexflow.Tasks.MessageCorrect</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Mkdir\Wexflow.Tasks.Mkdir.csproj">
       <Project>{ff5a22b8-b594-4d2b-a3fe-10bd28038005}</Project>
@@ -391,6 +399,10 @@
     <ProjectReference Include="..\Wexflow.Tasks.Sql\Wexflow.Tasks.Sql.csproj">
       <Project>{ef416670-6443-4c98-8d26-27d3741b8fb0}</Project>
       <Name>Wexflow.Tasks.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.SwitchCheck\Wexflow.Tasks.SwitchCheck.csproj">
+      <Project>{9df71d1e-6607-4621-87fb-453e45e5e1f0}</Project>
+      <Name>Wexflow.Tasks.SwitchCheck</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Sync\Wexflow.Tasks.Sync.csproj">
       <Project>{5784b8a2-51c4-4b1a-8ec2-322a4ab168c1}</Project>
@@ -479,6 +491,10 @@
     <ProjectReference Include="..\Wexflow.Tasks.WebToScreenshot\Wexflow.Tasks.WebToScreenshot.csproj">
       <Project>{93c60793-44e3-468b-9460-915fb1003c4b}</Project>
       <Name>Wexflow.Tasks.WebToScreenshot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Tasks.WhileCheck\Wexflow.Tasks.WhileCheck.csproj">
+      <Project>{62c7825f-0102-4c5b-a366-78f08a8e2121}</Project>
+      <Name>Wexflow.Tasks.WhileCheck</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wexflow.Tasks.Wmi\Wexflow.Tasks.Wmi.csproj">
       <Project>{0bef411f-039f-4c4f-a0ff-8defcfe1c019}</Project>

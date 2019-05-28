@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow id="203" name="SwitchDemo" description="" xmlns="urn:wexflow-schema">
+  <Settings>
+    <Setting name="launchType" value="trigger" />
+    <Setting name="enabled" value="true" />
+    <Setting name="period" value="00.00:00:00" />
+  </Settings>
+  <Tasks>
+    <Task id="1" name="FilesLoader" description="org pic" enabled="true">
+      <Setting name="file" value="C:\Desert.jpg" />
+      <Setting name="parent" value="-1" />
+    </Task>
+    <Task id="2" name="MessageCorrect" description="check pic" enabled="true">
+      <Setting name="checkString" value="" />
+    </Task>
+    <Task id="3" name="ImagesTransformer" description="to Gif" enabled="true">
+      <Setting name="outputFilePattern" value="$fileNameWithoutExtension.Gif" />
+      <Setting name="outputFormat" value="Gif" />
+      <Setting name="selectFiles" value="1" />
+    </Task>
+    <Task id="4" name="ImagesTransformer" description="to Tiff" enabled="true">
+      <Setting name="outputFilePattern" value="$fileNameWithoutExtension.Tiff" />
+      <Setting name="outputFormat" value="Tiff" />
+      <Setting name="selectFiles" value="1" />
+    </Task>
+    <Task id="5" name="ImagesTransformer" description="to Png" enabled="true">
+      <Setting name="outputFilePattern" value="$fileNameWithoutExtension.png" />
+      <Setting name="outputFormat" value="Png" />
+      <Setting name="selectFiles" value="1" />
+    </Task>
+    <Task id="100" name="SwitchCheck" description="Switch  trans pic" enabled="true">
+      <Setting name="caseTasks" value="3" case="Gif" />
+      <Setting name="checkID" value="2" />
+      <Setting name="defaultTasks" value="5" />
+      <Setting name="caseTasks" value="4" case="Tiff" />
+      <Setting name="parent" value="1" />
+    </Task>
+  </Tasks>
+  <ExecutionGraph>
+    <Task id="1">
+      <Parent id="-1" />
+    </Task>
+    <Switch id="100" parent="1" switch="2">
+      <Case value="Gif">
+        <Task id="3">
+          <Parent id="-1" />
+        </Task>
+      </Case>
+      <Case value="Tiff">
+        <Task id="4">
+          <Parent id="-1" />
+        </Task>
+      </Case>
+      <Default>
+        <Task id="5">
+          <Parent id="-1" />
+        </Task>
+      </Default>
+    </Switch>
+  </ExecutionGraph>
+</Workflow>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow id="200" name="normal" description="" xmlns="urn:wexflow-schema">
+  <Settings>
+    <Setting name="launchType" value="trigger" />
+    <Setting name="enabled" value="true" />
+    <Setting name="period" value="00.00:00:00" />
+  </Settings>
+  <Tasks>
+    <Task id="1" name="FileExists" description="check file exist" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="2" name="Zip" description="zip it" enabled="true">
+      <Setting name="selectFiles" value="1" />
+      <Setting name="zipFileName" value="1.zip" />
+    </Task>
+    <Task id="3" name="Wait" description="wait 20s" enabled="true">
+      <Setting name="duration" value="00.00:00:20" />
+    </Task>
+  </Tasks>
+</Workflow>

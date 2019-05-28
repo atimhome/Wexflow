@@ -79,16 +79,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eto">
-      <HintPath>..\..\libs\Eto.dll</HintPath>
+      <HintPath>..\..\..\libs\Eto.dll</HintPath>
     </Reference>
     <Reference Include="Eto.Mac">
-      <HintPath>..\..\libs\Eto.Mac.dll</HintPath>
+      <HintPath>..\..\..\libs\Eto.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Eto.WinForms">
-      <HintPath>..\..\libs\Eto.WinForms.dll</HintPath>
+      <HintPath>..\..\..\libs\Eto.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="MonoMac">
-      <HintPath>..\..\libs\MonoMac.dll</HintPath>
+      <HintPath>..\..\..\libs\MonoMac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -99,7 +99,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="Eto.Gtk2">
-      <HintPath>..\..\libs\Eto.Gtk2.dll</HintPath>
+      <HintPath>..\..\..\libs\Eto.Gtk2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

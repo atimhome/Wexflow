@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow id="204" name="complex" description="" xmlns="urn:wexflow-schema">
+  <Settings>
+    <Setting name="launchType" value="trigger" />
+    <Setting name="enabled" value="true" />
+    <Setting name="period" value="00.00:00:00" />
+  </Settings>
+  <Tasks>
+    <Task id="1" name="FileExists" description="exe1" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="-1" />
+    </Task>
+    <Task id="2" name="FileExists" description="check2" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="3" name="FileExists" description="exe3" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="9" name="FileExists" description="exe9" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="3" />
+    </Task>
+    <Task id="4" name="FileExists" description="check4" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="5" name="FileExists" description="exe5" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="7" name="FileExists" description="exe7" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="5" />
+    </Task>
+    <Task id="6" name="FileExists" description="exe6" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="8" name="FileExists" description="exe8" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="6" />
+    </Task>
+    <Task id="100" name="IfCheck" description="" enabled="true">
+      <Setting name="checkID" value="2" />
+      <Setting name="trueTasks" value="3" />
+      <Setting name="falseTasks" value="101" />
+      <Setting name="parent" value="1" />
+    </Task>
+    <Task id="101" name="IfCheck" description="" enabled="true">
+      <Setting name="falseTasks" value="5" />
+      <Setting name="checkID" value="4" />
+      <Setting name="trueTasks" value="6" />
+    </Task>
+    <Task id="10" name="FileExists" description="check10" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="11" name="FileExists" description="exe11" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="12" name="FileExists" description="check12" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="13" name="FileExists" description="check13" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="102" name="SwitchCheck" description="" enabled="true">
+      <Setting name="caseTasks" value="109" case="twelve" />
+      <Setting name="checkID" value="10" />
+      <Setting name="defaultTasks" value="108" />
+      <Setting name="caseTasks" value="110" case="thirteen" />
+      <Setting name="parent" value="7" />
+    </Task>
+    <Task id="14" name="FileExists" description="check14" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="15" name="FileExists" description="exe15" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="103" name="WhileCheck" description="" enabled="true">
+      <Setting name="checkID" value="14" />
+      <Setting name="whileTasks" value="106" />
+      <Setting name="parent" value="8" />
+    </Task>
+    <Task id="16" name="FileExists" description="check16" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="17" name="FileExists" description="check17" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="18" name="FileExists" description="exe18" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="19" name="FileExists" description="exe19" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="104" name="WhileCheck" description="" enabled="true">
+      <Setting name="checkID" value="16" />
+      <Setting name="whileTasks" value="105" />
+      <Setting name="parent" value="9" />
+    </Task>
+    <Task id="105" name="SwitchCheck" description="" enabled="true">
+      <Setting name="caseTasks" value="19" case="test" />
+      <Setting name="checkID" value="17" />
+      <Setting name="defaultTasks" value="18" />
+    </Task>
+    <Task id="20" name="FileExists" description="exe20" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="104" />
+    </Task>
+    <Task id="21" name="FileExists" description="check21" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="22" name="FileExists" description="check22" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="23" name="FileExists" description="exe23" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="24" name="FileExists" description="exe24" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="106" name="WhileCheck" description="" enabled="true">
+      <Setting name="checkID" value="21" />
+      <Setting name="whileTasks" value="107" />
+    </Task>
+    <Task id="107" name="IfCheck" description="" enabled="false">
+      <Setting name="checkID" value="22" />
+      <Setting name="falseTasks" value="24" />
+      <Setting name="trueTasks" value="23" />
+    </Task>
+    <Task id="25" name="FileExists" description="check25" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="26" name="FileExists" description="exe26" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="27" name="FileExists" description="exe27" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="108" name="IfCheck" description="" enabled="true">
+      <Setting name="checkID" value="25" />
+      <Setting name="falseTasks" value="26" />
+      <Setting name="trueTasks" value="27" />
+    </Task>
+    <Task id="28" name="FileExists" description="exe28" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="102" />
+    </Task>
+    <Task id="109" name="WhileCheck" description="" enabled="true">
+      <Setting name="checkID" value="12" />
+      <Setting name="whileTasks" value="11" />
+    </Task>
+    <Task id="29" name="FileExists" description="exe29" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="30" name="FileExists" description="exe30" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="110" name="SwitchCheck" description="" enabled="true">
+      <Setting name="caseTasks" value="29" case="tn" />
+      <Setting name="checkID" value="13" />
+      <Setting name="defaultTasks" value="30" />
+    </Task>
+    <Task id="31" name="FileExists" description="check31" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="32" name="FileExists" description="exe32" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="33" name="FileExists" description="check33" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="34" name="FileExists" description="exe34" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="111" />
+    </Task>
+    <Task id="111" name="IfCheck" description="" enabled="true">
+      <Setting name="checkID" value="31" />
+      <Setting name="falseTasks" value="113" />
+      <Setting name="trueTasks" value="112" />
+      <Setting name="parent" value="20" />
+    </Task>
+    <Task id="35" name="FileExists" description="exe35" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="36" name="FileExists" description="exe36" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="112" name="IfCheck" description="" enabled="true">
+      <Setting name="checkID" value="33" />
+      <Setting name="falseTasks" value="114" />
+      <Setting name="trueTasks" value="35" />
+    </Task>
+    <Task id="37" name="FileExists" description="check37" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="113" name="WhileCheck" description="" enabled="true">
+      <Setting name="checkID" value="37" />
+      <Setting name="whileTasks" value="32" />
+    </Task>
+    <Task id="38" name="FileExists" description="check38" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="39" name="FileExists" description="exe39" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="114" name="SwitchCheck" description="" enabled="true">
+      <Setting name="caseTasks" value="39" case="try" />
+      <Setting name="checkID" value="38" />
+      <Setting name="defaultTasks" value="36" />
+    </Task>
+    <Task id="40" name="FileExists" description="exe40" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+      <Setting name="parent" value="34" />
+    </Task>
+  </Tasks>
+  <ExecutionGraph>
+    <Task id="1">
+      <Parent id="-1" />
+    </Task>
+    <If id="100" parent="1" if="2">
+      <Do>
+        <Task id="3">
+          <Parent id="-1" />
+        </Task>
+        <Task id="9">
+          <Parent id="3" />
+        </Task>
+        <While id="104" parent="9" while="16">
+          <Switch id="105" parent="-1" switch="17">
+            <Case value="test">
+              <Task id="19">
+                <Parent id="-1" />
+              </Task>
+            </Case>
+            <Default>
+              <Task id="18">
+                <Parent id="-1" />
+              </Task>
+            </Default>
+          </Switch>
+        </While>
+        <Task id="20">
+          <Parent id="104" />
+        </Task>
+        <If id="111" parent="20" if="31">
+          <Do>
+            <If id="112" parent="-1" if="33">
+              <Do>
+                <Task id="35">
+                  <Parent id="-1" />
+                </Task>
+              </Do>
+              <Else>
+                <Switch id="114" parent="-1" switch="38">
+                  <Case value="try">
+                    <Task id="39">
+                      <Parent id="-1" />
+                    </Task>
+                  </Case>
+                  <Default>
+                    <Task id="36">
+                      <Parent id="-1" />
+                    </Task>
+                  </Default>
+                </Switch>
+              </Else>
+            </If>
+          </Do>
+          <Else>
+            <While id="113" parent="-1" while="37">
+              <Task id="32">
+                <Parent id="-1" />
+              </Task>
+            </While>
+          </Else>
+        </If>
+        <Task id="34">
+          <Parent id="111" />
+        </Task>
+        <Task id="40">
+          <Parent id="34" />
+        </Task>
+      </Do>
+      <Else>
+        <If id="101" parent="-1" if="4">
+          <Do>
+            <Task id="6">
+              <Parent id="-1" />
+            </Task>
+            <Task id="8">
+              <Parent id="6" />
+            </Task>
+            <While id="103" parent="8" while="14">
+              <While id="106" parent="-1" while="21">
+                <If id="107" parent="-1" if="22">
+                  <Do>
+                    <Task id="23">
+                      <Parent id="-1" />
+                    </Task>
+                  </Do>
+                  <Else>
+                    <Task id="24">
+                      <Parent id="-1" />
+                    </Task>
+                  </Else>
+                </If>
+              </While>
+            </While>
+          </Do>
+          <Else>
+            <Task id="5">
+              <Parent id="-1" />
+            </Task>
+            <Task id="7">
+              <Parent id="5" />
+            </Task>
+            <Switch id="102" parent="7" switch="10">
+              <Case value="twelve">
+                <While id="109" parent="-1" while="12">
+                  <Task id="11">
+                    <Parent id="-1" />
+                  </Task>
+                </While>
+              </Case>
+              <Case value="thirteen">
+                <Switch id="110" parent="-1" switch="13">
+                  <Case value="tn">
+                    <Task id="29">
+                      <Parent id="-1" />
+                    </Task>
+                  </Case>
+                  <Default>
+                    <Task id="30">
+                      <Parent id="-1" />
+                    </Task>
+                  </Default>
+                </Switch>
+              </Case>
+              <Default>
+                <If id="108" parent="-1" if="25">
+                  <Do>
+                    <Task id="27">
+                      <Parent id="-1" />
+                    </Task>
+                  </Do>
+                  <Else>
+                    <Task id="26">
+                      <Parent id="-1" />
+                    </Task>
+                  </Else>
+                </If>
+              </Default>
+            </Switch>
+            <Task id="28">
+              <Parent id="102" />
+            </Task>
+          </Else>
+        </If>
+      </Else>
+    </If>
+  </ExecutionGraph>
+</Workflow>
