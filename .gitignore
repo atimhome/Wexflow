@@ -3,6 +3,7 @@ Thumbs.db
 *.userprefs
 *.obj
 *.exe
+!libs/chromedriver.exe
 *.exe.config
 *.pdb
 *.user
@@ -32,6 +33,8 @@ _ReSharper*/
 $tf*/
 .vs/
 setup/*.tar.gz
+setup/*.zip
+setup/*.zip.tmp
 setup/Wexflow.app/
 *.nupkg
 Wexflow_coverage.xml
