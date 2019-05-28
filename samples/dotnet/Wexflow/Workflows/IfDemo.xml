@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow id="201" name="IfDemo" description="" xmlns="urn:wexflow-schema">
+  <Settings>
+    <Setting name="launchType" value="trigger" />
+    <Setting name="enabled" value="true" />
+    <Setting name="period" value="00.00:00:00" />
+  </Settings>
+  <Tasks>
+    <Task id="1" name="FileExists" description="Check Desert.jpg" enabled="true">
+      <Setting name="file" value="C:\Desert.jpg" />
+    </Task>
+    <Task id="2" name="FilesLoader" description="Load Desert.jpg" enabled="true">
+      <Setting name="file" value="C:\Desert.jpg" />
+    </Task>
+    <Task id="3" name="FilesLoader" description="Load Desert.bmp" enabled="true">
+      <Setting name="file" value="C:\Desert.bmp" />
+    </Task>
+    <Task id="100" name="IfCheck" description="" enabled="true">
+      <Setting name="checkID" value="1" />
+      <Setting name="falseTasks" value="3" />
+      <Setting name="trueTasks" value="2" />
+      <Setting name="parent" value="-1" />
+    </Task>
+    <Task id="4" name="Zip" description="Zip it" enabled="true">
+      <Setting name="selectFiles" value="2" />
+      <Setting name="zipFileName" value="DesertJpg.zip" />
+      <Setting name="parent" value="2" />
+    </Task>
+    <Task id="5" name="Zip" description="Zip it" enabled="true">
+      <Setting name="selectFiles" value="3" />
+      <Setting name="zipFileName" value="DesertBmp.zip" />
+      <Setting name="parent" value="3" />
+    </Task>
+  </Tasks>
+  <ExecutionGraph>
+    <If id="100" parent="-1" if="1">
+      <Do>
+        <Task id="2">
+          <Parent id="-1" />
+        </Task>
+        <Task id="4">
+          <Parent id="2" />
+        </Task>
+      </Do>
+      <Else>
+        <Task id="3">
+          <Parent id="-1" />
+        </Task>
+        <Task id="5">
+          <Parent id="3" />
+        </Task>
+      </Else>
+    </If>
+  </ExecutionGraph>
+</Workflow>

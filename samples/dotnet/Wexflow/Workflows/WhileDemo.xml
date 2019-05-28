@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow id="202" name="WhileDemo" description="" xmlns="urn:wexflow-schema">
+  <Settings>
+    <Setting name="launchType" value="trigger" />
+    <Setting name="enabled" value="true" />
+    <Setting name="period" value="00.00:00:00" />
+  </Settings>
+  <Tasks>
+    <Task id="1" name="FileExists" description="Check the file exist" enabled="true">
+      <Setting name="file" value="C:\1.txt" />
+    </Task>
+    <Task id="2" name="Wait" description="Wait 10s" enabled="true">
+      <Setting name="duration" value="00.00:00:10" />
+    </Task>
+    <Task id="100" name="WhileCheck" description="while loop" enabled="true">
+      <Setting name="checkID" value="1" />
+      <Setting name="whileTasks" value="2" />
+      <Setting name="parent" value="-1" />
+    </Task>
+    <Task id="3" name="FilesLoader" description="Load file" enabled="true">
+      <Setting name="file" value="C:\2.txt" />
+      <Setting name="parent" value="100" />
+    </Task>
+    <Task id="4" name="Zip" description="Zip file" enabled="true">
+      <Setting name="selectFiles" value="3" />
+      <Setting name="zipFileName" value="txt.zip" />
+      <Setting name="parent" value="3" />
+    </Task>
+  </Tasks>
+  <ExecutionGraph>
+    <While id="100" parent="-1" while="1">
+      <Task id="2">
+        <Parent id="-1" />
+      </Task>
+    </While>
+    <Task id="3">
+      <Parent id="100" />
+    </Task>
+    <Task id="4">
+      <Parent id="3" />
+    </Task>
+  </ExecutionGraph>
+</Workflow>

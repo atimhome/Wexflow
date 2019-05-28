@@ -392,18 +392,26 @@ namespace Wexflow.Core
         /// Starts a workflow.
         /// </summary>
         /// <param name="workflowId">Workflow Id.</param>
-        public void StartWorkflow(int workflowId)
+        /// /// <param name="hashValue">Workflow Hashtable Value.</param>
+        public void StartWorkflow(int workflowId, string hashValue = null)
         {
             var wf = GetWorkflow(workflowId);
 
             if (wf == null)
             {
                 Logger.ErrorFormat("Workflow {0} not found.", workflowId);
+                return;
             }
-            else
+
+            if (wf.IsEnabled == false)
             {
-                if (wf.IsEnabled) wf.Start();
+                return;
             }
+
+            if (hashValue == null)
+                wf.Start();
+            else
+                wf.Start(hashValue);
         }
 
         /// <summary>

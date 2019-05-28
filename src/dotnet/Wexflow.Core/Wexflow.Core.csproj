@@ -94,12 +94,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\libs\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Quartz, Version=2.6.2.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\libs\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -113,6 +118,7 @@
     <Compile Include="ExecutionGraph\Flowchart\Switch.cs" />
     <Compile Include="ExecutionGraph\Flowchart\While.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="ExecutionGraph\GraphNode.cs" />
     <Compile Include="FileInf.cs" />
     <Compile Include="ExecutionGraph\Graph.cs" />
     <Compile Include="ExecutionGraph\GraphEvent.cs" />
@@ -127,6 +133,8 @@
     <Compile Include="Variable.cs" />
     <Compile Include="WexflowEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WexflowGraph.cs" />
+    <Compile Include="WexflowGraphXML.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="WorkflowJob.cs" />
   </ItemGroup>
@@ -147,6 +155,10 @@
     <ProjectReference Include="..\Wexflow.Core.Db\Wexflow.Core.Db.csproj">
       <Project>{2bbb9f04-49d7-49a7-a065-4b2c81e66307}</Project>
       <Name>Wexflow.Core.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wexflow.Core.Service.Contracts\Wexflow.Core.Service.Contracts.csproj">
+      <Project>{7debd0d9-ea9b-445c-9b6d-f426908ce736}</Project>
+      <Name>Wexflow.Core.Service.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

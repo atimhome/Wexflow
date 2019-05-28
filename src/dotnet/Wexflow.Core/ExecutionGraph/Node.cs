@@ -12,7 +12,7 @@
         /// <summary>
         /// Node parent Id.
         /// </summary>
-        public int ParentId { get; private set; }
+        public int ParentId { get; set; }
 
         /// <summary>
         /// Creates a new node.

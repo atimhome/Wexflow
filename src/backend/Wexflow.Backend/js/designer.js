@@ -1,4 +1,13 @@
-﻿function WexflowDesigner() {
+﻿// Create Element.remove() function if not exist
+if (!('remove' in Element.prototype)) {
+    Element.prototype.remove = function () {
+        if (this.parentNode) {
+            this.parentNode.removeChild(this);
+        }
+    };
+}
+
+function WexflowDesigner() {
     "use strict";
 
     hljs.initHighlightingOnLoad();
@@ -512,6 +521,8 @@
                                 updateStatusTimer(workflow);
                             });
 
+                        loadRightPanel(selectedId);
+
                         // Show the xml button
                         document.getElementById("wf-xml-container").innerHTML = '';
 
@@ -661,7 +672,6 @@
             workflowTasks[workflowId][index].Id = wfTaskId.value;
             this.parentElement.parentElement.parentElement.parentElement.parentElement.getElementsByClassName(
                 "wf-task-title-label")[0].innerHTML = "Task " + wfTaskId.value;
-            loadExecutionGraph();
         };
 
         var wfTaskName = wfTask.getElementsByClassName("wf-task-name")[0];
@@ -698,7 +708,6 @@
         var wfTaskDesc = wfTask.getElementsByClassName("wf-task-desc")[0];
         wfTaskDesc.onkeyup = function() {
             workflowTasks[workflowId][index].Description = wfTaskDesc.value;
-            loadExecutionGraph();
         };
 
         var wfTaskEnabled = wfTask.getElementsByClassName("wf-task-enabled")[0];
@@ -759,6 +768,7 @@
                 var cell1Html = "<select class='wf-setting-name'>";
 
                 cell1Html += "<option value=''></option>";
+                cell1Html += "<option value='parent'>Parent</option>";
                 for (var i = 0; i < settings.length; i++) {
                     var settingName = settings[i];
                     cell1Html += "<option value='" + settingName + "'" + (sn === settingName ? "selected" : "") + ">" + settingName + "</option>";
@@ -786,16 +796,16 @@
 
                     var wfAddAttributeTd =
                         wfSettingName.parentElement.parentElement.getElementsByClassName("wf-add-attribute-td")[0];
-                    if (wfSettingName.value === "selectFiles" || wfSettingName.value === "selectAttachments") {
+                    if (wfSettingName.value === "selectFiles" || wfSettingName.value === "selectAttachments" || wfSettingName.value === "caseTasks") {
                         wfAddAttributeTd.style.display = "block";
                     } else {
                         wfAddAttributeTd.style.display = "none";
                     }
                 };
 
-                if (sn === "selectFiles" || sn === "selectAttachments") {
+                if (sn === "selectFiles" || sn === "selectAttachments" || sn === "caseTasks") {
                     var wfAddAttributeTd = wfSettingName.parentElement.parentElement.getElementsByClassName("wf-add-attribute-td")[0];
-                    if (wfSettingName.value === "selectFiles" || wfSettingName.value === "selectAttachments") {
+                    if (wfSettingName.value === "selectFiles" || wfSettingName.value === "selectAttachments" || wfSettingName.value === "caseTasks") {
                         wfAddAttributeTd.style.display = "block";
                     } else {
                         wfAddAttributeTd.style.display = "none";
@@ -1010,11 +1020,14 @@
             {
                 selector: 'edge',
                 style: {
+                    'content': 'data(name)',
                     'curve-style': 'bezier',
                     'width': 4,
                     'target-arrow-shape': 'triangle',
-                    'line-color': '#ffb347', // 9dbaea
-                    'target-arrow-color': '#ffb347' // 9dbaea
+                    'line-color': '#9dbaea', // 9dbaea
+                    'target-arrow-color': '#9dbaea', // 9dbaea
+                    'text-outline-color': '#9dbaea',
+                    'text-outline-width': 5
                 }
             }
         ];
@@ -1064,7 +1077,7 @@
                         var wfNode = wfNodes[i];
                         nodes.push({ data: { id: wfNode.Id, name: wfNode.Name } });
                         if (wfNode.ParentId !== "n-1") {
-                            edges.push({ data: { source: wfNode.ParentId, target: wfNode.Id } });
+                            edges.push({ data: { source: wfNode.ParentId, target: wfNode.Id, name: wfNode.Description } });
                         }
                     }
 
@@ -1386,23 +1399,19 @@
                                         wfSettingNameTd.innerHTML = tdHtml;
                                     });
                                 }*/
-
-                                if (workflow.IsExecutionGraphEmpty === true) {
-                                    document.getElementById("wf-add-task").style.display = "block";
-                                    var wfRemoveTaskBtns = document.getElementsByClassName("wf-remove-task");
-                                    for (var i4 = 0; i4 < wfRemoveTaskBtns.length; i4++) {
-                                        var wfRemoveTaskBtn = wfRemoveTaskBtns[i4];
-                                        wfRemoveTaskBtn.style.display = "block";
-                                    }
-                                } else {
-                                    document.getElementById("wf-add-task").style.display = "none";
+                                
+                                document.getElementById("wf-add-task").style.display = "block";
+                                var wfRemoveTaskBtns = document.getElementsByClassName("wf-remove-task");
+                                for (var i4 = 0; i4 < wfRemoveTaskBtns.length; i4++) {
+                                    var wfRemoveTaskBtn = wfRemoveTaskBtns[i4];
+                                    wfRemoveTaskBtn.style.display = "block";
                                 }
 
                                 var wfAddAttributesTds = document.getElementsByClassName("wf-add-attribute-td");
                                 for (var i3 = 0; i3 < wfAddAttributesTds.length; i3++) {
                                     var wfAddAttributeTd = wfAddAttributesTds[i3];
                                     var settingValue = wfAddAttributeTd.parentElement.getElementsByClassName("wf-setting-name")[0].value;
-                                    if (settingValue === "selectFiles" || settingValue === "selectAttachments") {
+                                    if (settingValue === "selectFiles" || settingValue === "selectAttachments" || settingValue === "caseTasks") {
                                         wfAddAttributeTd.style.display = "block";
                                     }
                                 }
@@ -1551,7 +1560,8 @@
                                             wfSettingName.parentElement.parentElement.getElementsByClassName(
                                                 "wf-add-attribute-td")[0];
                                         if (wfSettingName.value === "selectFiles" ||
-                                            wfSettingName.value === "selectAttachments") {
+                                            wfSettingName.value === "selectAttachments" ||
+                                            wfSettingName.value === "caseTasks") {
                                             wfAddAttributeTd.style.display = "block";
                                         } else {
                                             wfAddAttributeTd.style.display = "none";

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tasks>
+  <!--
+    MessageCorrect can check that is the message include the checkString.    
+  -->
+  <Task id="$int" name="MessageCorrect" description="$string" enabled="true|false">
+	<!-- if message is include checkString,will return success ,else return error.-->
+    <Setting name="checkString" value="$string" />	
+	<!-- the message have to check ,have to add to url, ex:http://localhost:8000/wexflow/startWithData/?id=99&hashValue={"message": "123Test"}.-->
+    <Setting name="message" value="$string" />    	
+  </Task>
+</Tasks>
